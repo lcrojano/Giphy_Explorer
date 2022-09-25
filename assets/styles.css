@@ -56,8 +56,9 @@ input[type="search"]:focus {
     outline: none;
 }
 
-.search-term {
+#search-term {
     font-size: 28px;
+    text-transform: uppercase;
 }
 
 
@@ -71,15 +72,20 @@ input[type="search"]:focus {
 
 /*Gif list*/
 
-#gif-list {
+#gifs-list {
     gap: 0;
+    align-content: center;
+    justify-content: start;
+    height: 100vh;
 }
 
-.figure {
-    max-width: 300px;
+figure {
+    max-width: 240px;
+    margin: 10px;
 }
 
 .picture img {
+    max-width: 240px;
     width: 100%;
     flex-grow: auto;
     border-radius: 4px;
