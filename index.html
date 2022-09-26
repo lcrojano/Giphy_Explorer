@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/normalize.css">
     <link rel="stylesheet" href="assets/styles.css">
-    <script src="assets/scripts.js"></script>
+    <script src="assets/scripts.js" defer></script>
     <title>Giphy Search | @lcrojano </title>
 </head>
 
@@ -29,37 +29,20 @@
         </section>
         <section class="flex-row justify-content-btw  aling-items-center">
             <div class="flex-col ">
-                <strong class="search-term">GATOS</strong>
-                <span>2000</span>
+                <strong id="search-term">GATOS</strong>
+                <span id="">2000</span>
             </div>
             <nav>
                 <menu id="history" class="flex-row tag-menu ">
                     <li><a class="tag-btn" href="?q=gatos">gatos</a> </li>
-                    <li><a class="tag-btn" href="?q=gatos">perros</a> </li>
-                    <li><a class="tag-btn" href="?q=gatos">patos</a> </li>
+                    <li><a class="tag-btn" href="?q=perro">perros</a> </li>
+                    <li><a class="tag-btn" href="?q=hola">patos</a> </li>
                 </menu>
             </nav>
         </section>
 
-        <main id="gifs-list" class="flex-row flex-wrap justify-content-center ">
-            <figure class="figure">
-                <picture class="picture">
-                    <source srcset="https://media2.giphy.com/media/l4hLTU9vannBNUQy4/giphy.gif?cid=ecf05e47ugmvvpcnwiepeozm6f5tip9sfazau3tikalecm47&rid=giphy.gif&ct=g" type="image/png" media="(min-width:1920px)">
-                    <source srcset="https://media2.giphy.com/media/l4hLTU9vannBNUQy4/giphy.gif?cid=ecf05e47ugmvvpcnwiepeozm6f5tip9sfazau3tikalecm47&rid=giphy.gif&ct=g" type="image/png" media="(min-width:1200px)">
-                    <source srcset="https://media2.giphy.com/media/l4hLTU9vannBNUQy4/giphy.gif?cid=ecf05e47ugmvvpcnwiepeozm6f5tip9sfazau3tikalecm47&rid=giphy.gif&ct=g" type="image/png" media="(min-width:700px)">
-                    <img src="https://media2.giphy.com/media/l4hLTU9vannBNUQy4/giphy.gif?cid=ecf05e47ugmvvpcnwiepeozm6f5tip9sfazau3tikalecm47&rid=giphy.gif&ct=g" alt="Test" class="abc">
-                </picture>
-                <figcaption>
-                    <div class="autor flex-row aling-items-center">
-                        <img src="https://via.placeholder.com/728x90.png?text=Visit+WhoIsHostingThis.com+Buyers+Guide" alt="">
-                        <div class="info flex-col ">
-                            <p><strong>name</strong></p>
-                            <p>@name</p>
-                        </div>
-                    </div>
-                </figcaption>
-            </figure>
-
+        <main>
+            <div id="gifs-list" class="flex-row flex-wrap justify-content-center"></div>
         </main>
 
 

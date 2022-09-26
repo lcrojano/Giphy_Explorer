@@ -15,6 +15,8 @@ body {
     background-color: var(--principal-color);
     color: var(--principal-text-color);
     font-family: var(--primary-font);
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 h1 {
@@ -22,6 +24,7 @@ h1 {
 }
 
 .container {
+    max-width: 80%;
     width: 80%;
     gap: 10px;
 }
@@ -56,8 +59,9 @@ input[type="search"]:focus {
     outline: none;
 }
 
-.search-term {
+#search-term {
     font-size: 28px;
+    text-transform: uppercase;
 }
 
 
@@ -71,15 +75,22 @@ input[type="search"]:focus {
 
 /*Gif list*/
 
-#gif-list {
+#gifs-list {
     gap: 0;
+    justify-content: baseline;
+    align-items: flex-start;
+    height: 100vh;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
-.figure {
-    max-width: 300px;
+figure {
+    max-width: 220px;
+    margin: 10px;
 }
 
 .picture img {
+    max-width: 240px;
     width: 100%;
     flex-grow: auto;
     border-radius: 4px;
