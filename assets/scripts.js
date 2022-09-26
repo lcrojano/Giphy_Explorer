@@ -12,7 +12,6 @@ class GiphyObj {
     }
 }
 
-
 /** Get param q, from url, return empty string or query */
 const getUrlParams = () => {
     const params = new URLSearchParams(window.location.search);
@@ -29,27 +28,89 @@ const getUrlParams = () => {
 const loadGifs = async(url, callback) => {
     let gifsResponse = await fetch(url);
     let gifs = await gifsResponse.json();
-    callback(gifs.data);
+    if (gifs.data.length > 0) {
+        callback(gifs.data);
+    } else {
+        document.getElementById("gifs-list").innerHTML = `<div class="flex-col">
+            <p>Lo siento, no se encontro</p>
+            <img src="assets/images/no.gif" alt="no encontrado"> 
+        </div> `;
+
+    }
     return gifs.data;
 }
 
 /**Search */
 
-/**Load infinite */
-// listen for scroll event and load more images if we reach the bottom of window
+const searchEvent = (e, giphyObj) => {
+        //call search api with params
+        let barraBusqueda = document.getElementById("search");;
+        let q = barraBusqueda.value;
+        giphyObj.q = q;
+        //delete previus result
+        document.querySelector("#gifs-list").innerHTML = "";
+        loadGifs(giphyObj.search_api(), updateMainView);
+        //update view search text
+        let searchElement = document.getElementById("search-term")
+        searchElement.innerHTML = q;
+        //update q param
+        var queryParams = new URLSearchParams(window.location.search);
+        queryParams.set("q", q);
+        history.replaceState(null, null, "?" + queryParams.toString());
+        setHistory(q);
+    }
+    /**Load infinite */
+    // listen for scroll event and load more images if we reach the bottom of window
 
 
+/** HISTORY */
+const getHistory = () => {
+    let localStorage = window.localStorage;
+    let historyString = localStorage.getItem("history");
+    let history = historyString ? JSON.parse(historyString) : []
+    let menu = document.getElementById("history");
+    history.map(q => {
+        let li = document.createElement("li");
+        li.innerHTML = `<li><a class="tag-btn" href="?q=${q}">${q}</a> </li>
+        `;
+        menu.prepend(li);
+    })
+}
+
+const setHistory = q => {
+    //get history fron local storage
+    let localStorage = window.localStorage;
+    let historyString = localStorage.getItem("history");
+    let history = historyString ? JSON.parse(historyString) : []
+    let menu = document.getElementById("history");
+    if (history.length < 3) {
+        history.push(q);
+
+    } else {
+        history.shift();
+        history.push(q);
+
+        menu.removeChild(menu.lastElementChild);
+    }
+    localStorage.setItem("history", JSON.stringify(history));
+
+    let li = document.createElement("li");
+    li.innerHTML = `<li><a class="tag-btn" href="?q=${q}">${q}</a> </li>
+    `;
+    menu.prepend(li);
+
+}
 
 //View updaters
 const updateMainView = (gifs) => {
-    gifs.forEach(gif => {
-        //1. find element and build template
-        let main = document.querySelector("#gifs-list"); //Esta en el dom
-        let figure = document.createElement("figure", { class: "figure" }); //Este no esta en el dom todavia
+        gifs.forEach(gif => {
+            //1. find element and build template
+            let main = document.querySelector("#gifs-list"); //Esta en el dom
+            let figure = document.createElement("figure", { class: "figure" }); //Este no esta en el dom todavia
 
 
-        figure.innerHTML =
-            `
+            figure.innerHTML =
+                `
             <picture class="picture ">
                 <source srcset="${gif.images?.downsized?.url}" type="image/png" media="(min-width:1920px)">
                 <source srcset="${gif.images?.downsized?.url}" type="image/png" media="(min-width:1200px)">
@@ -67,14 +128,12 @@ const updateMainView = (gifs) => {
             </figcaption>
         
            `;
-        //4. agregar el nodo html a el padre.
-        main.appendChild(figure);
-    });
+            //4. agregar el nodo html a el padre.
+            main.appendChild(figure);
+        });
 
-}
-
-
-/** Updates search termn in view */
+    }
+    /** Updates search termn in view */
 const updateParamView = (q) => {
     let text = q ? q : "Todo";
     let searchElement = document.getElementById("search-term")
@@ -83,19 +142,15 @@ const updateParamView = (q) => {
 
 
 
-//1. Obtener el input cada vez que suceda el evento search
-const searchEvent = async(e, giphyObj) => {
-
-
-
-
-}
 const init = async(offset = 0) => {
         // check param from url
         const searchTerm = getUrlParams();
         let giphyObj = new GiphyObj();
         giphyObj.q = searchTerm;
         updateParamView(searchTerm);
+
+        //lod history
+        getHistory();
 
 
 
@@ -129,22 +184,12 @@ const init = async(offset = 0) => {
         //search event
         const searchBar = document.getElementById("search");
         searchBar.addEventListener("search", (e) => {
-            //call search api with params
-            let barraBusqueda = e.target;
-            let q = barraBusqueda.value;
-            giphyObj.q = q;
-            //delete previus result
-            document.querySelector("#gifs-list").innerHTML = "";
-            loadGifs(giphyObj.search_api(), updateMainView);
-            //update view search text
-            let searchElement = document.getElementById("search-term")
-            searchElement.innerHTML = q;
-            //update q param
-            var queryParams = new URLSearchParams(window.location.search);
-            queryParams.set("q", q);
-            history.replaceState(null, null, "?" + queryParams.toString());
+            searchEvent(e, giphyObj)
         });
 
+        document.getElementById('search-btn').addEventListener('click', (e) => {
+            searchEvent(e, giphyObj)
+        });
     }
     //Funcion de inicio
 init();
