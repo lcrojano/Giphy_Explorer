@@ -3,9 +3,13 @@ class GiphyObj {
     key = "6zzmXysXbC6FVLIrBCIeQUTEjtl9DNN5";
     q = "";
     trending_api = () => `https://api.giphy.com/v1/gifs/trending?api_key=${this.key}&limit=${this.limit}&offset=${this.offset}`;
-    search_api = () => `https://api.giphy.com/v1/gifs/search?api_key=${this.key}&limit=10&offset=${this.offset}&q=%22${this.q}%22`;
+    search_api = () => `https://api.giphy.com/v1/gifs/search?api_key=${this.key}&limit=${this.limit}&offset=${this.offset}&q=%22${this.q}%22`;
     offset = 0;
     limit = 10;
+
+    updateOffset = () => {
+        this.offset += this.limit;
+    }
 }
 
 
@@ -29,21 +33,24 @@ const loadGifs = async(url, callback) => {
     return gifs.data;
 }
 
-/**Load Api with gifs */
+/**Search */
+
+/**Load infinite */
+// listen for scroll event and load more images if we reach the bottom of window
+
+
+
+//View updaters
 const updateMainView = (gifs) => {
     gifs.forEach(gif => {
-        //1. donde lo voy a poner?
+        //1. find element and build template
         let main = document.querySelector("#gifs-list"); //Esta en el dom
-        //2. crear la plantilla de la caja
         let figure = document.createElement("figure", { class: "figure" }); //Este no esta en el dom todavia
-        //3. rellenar la información con el objeto.
 
-        //Curar elementos
 
         figure.innerHTML =
             `
-           
-            <picture class="picture">
+            <picture class="picture ">
                 <source srcset="${gif.images?.downsized?.url}" type="image/png" media="(min-width:1920px)">
                 <source srcset="${gif.images?.downsized?.url}" type="image/png" media="(min-width:1200px)">
                 <source srcset="${gif.images?.downsized?.url}" type="image/png" media="(min-width:700px)">
@@ -66,7 +73,7 @@ const updateMainView = (gifs) => {
 
 }
 
-//View updaters
+
 /** Updates search termn in view */
 const updateParamView = (q) => {
     let text = q ? q : "Todo";
@@ -76,7 +83,14 @@ const updateParamView = (q) => {
 
 
 
-const init = async() => {
+//1. Obtener el input cada vez que suceda el evento search
+const searchEvent = async(e, giphyObj) => {
+
+
+
+
+}
+const init = async(offset = 0) => {
         // check param from url
         const searchTerm = getUrlParams();
         let giphyObj = new GiphyObj();
@@ -91,6 +105,45 @@ const init = async() => {
             loadGifs(giphyObj.trending_api(), updateMainView);
         }
 
+        //Inifinite loading wth scroll event
+        window.addEventListener('scroll', () => {
+            console.log("scrolled", window.scrollY) //scrolled from top
+            console.log(window.innerHeight) //visible part of screen
+
+            if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+                giphyObj.updateOffset();
+                //update css
+                let list = document.querySelector("#gifs-list");
+                list.style.height = `${giphyObj.offset*10}vh`;
+                if (searchTerm) {
+                    loadGifs(giphyObj.search_api(), updateMainView);
+                } else {
+                    loadGifs(giphyObj.trending_api(), updateMainView);
+                }
+
+
+            }
+
+        })
+
+        //search event
+        const searchBar = document.getElementById("search");
+        searchBar.addEventListener("search", (e) => {
+            //call search api with params
+            let barraBusqueda = e.target;
+            let q = barraBusqueda.value;
+            giphyObj.q = q;
+            //delete previus result
+            document.querySelector("#gifs-list").innerHTML = "";
+            loadGifs(giphyObj.search_api(), updateMainView);
+            //update view search text
+            let searchElement = document.getElementById("search-term")
+            searchElement.innerHTML = q;
+            //update q param
+            var queryParams = new URLSearchParams(window.location.search);
+            queryParams.set("q", q);
+            history.replaceState(null, null, "?" + queryParams.toString());
+        });
 
     }
     //Funcion de inicio
