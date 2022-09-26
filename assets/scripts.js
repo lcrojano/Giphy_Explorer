@@ -41,12 +41,23 @@ const loadGifs = async(url, callback) => {
 }
 
 /**Search */
-//1. Obtener el input cada vez que suceda el evento search
-const searchEvent = async(e, giphyObj) => {
 
-
-
-
+const searchEvent = (e, giphyObj) => {
+        //call search api with params
+        let barraBusqueda = document.getElementById("search");;
+        let q = barraBusqueda.value;
+        giphyObj.q = q;
+        //delete previus result
+        document.querySelector("#gifs-list").innerHTML = "";
+        loadGifs(giphyObj.search_api(), updateMainView);
+        //update view search text
+        let searchElement = document.getElementById("search-term")
+        searchElement.innerHTML = q;
+        //update q param
+        var queryParams = new URLSearchParams(window.location.search);
+        queryParams.set("q", q);
+        history.replaceState(null, null, "?" + queryParams.toString());
+        setHistory(q);
     }
     /**Load infinite */
     // listen for scroll event and load more images if we reach the bottom of window
@@ -173,23 +184,12 @@ const init = async(offset = 0) => {
         //search event
         const searchBar = document.getElementById("search");
         searchBar.addEventListener("search", (e) => {
-            //call search api with params
-            let barraBusqueda = e.target;
-            let q = barraBusqueda.value;
-            giphyObj.q = q;
-            //delete previus result
-            document.querySelector("#gifs-list").innerHTML = "";
-            loadGifs(giphyObj.search_api(), updateMainView);
-            //update view search text
-            let searchElement = document.getElementById("search-term")
-            searchElement.innerHTML = q;
-            //update q param
-            var queryParams = new URLSearchParams(window.location.search);
-            queryParams.set("q", q);
-            history.replaceState(null, null, "?" + queryParams.toString());
-            setHistory(q);
+            searchEvent(e, giphyObj)
         });
 
+        document.getElementById('search-btn').addEventListener('click', (e) => {
+            searchEvent(e, giphyObj)
+        });
     }
     //Funcion de inicio
 init();
