@@ -27,20 +27,20 @@ h1 {
     max-width: 80%;
     width: 80%;
     gap: 10px;
+    padding: 20px 0;
 }
-
 
 /* Search bar*/
 
 input[type="search"] {
     border: none;
     background: var(--principal-text-color);
-    margin: 0;
+    margin: 10px 0;
     padding: 7px 8px;
     color: var(--primary-text-color);
     border-radius: 4px;
     box-sizing: border-box;
-    height: 52px;
+    height: 50px;
     font-size: 18px;
 }
 
@@ -49,7 +49,10 @@ input[type="search"]::placeholder {
 }
 
 #search-btn {
-    width: 60px;
+    width: 52px;
+    height: 52px;
+    border-radius: 4px;
+    margin-left: 15px;
 }
 
 #search-btn:focus,
@@ -62,6 +65,7 @@ input[type="search"]:focus {
 #search-term {
     font-size: 28px;
     text-transform: uppercase;
+    margin-bottom: 10px;
 }
 
 
@@ -134,7 +138,7 @@ figure {
     justify-content: stretch;
 }
 
-.aling-items-center {
+.align-items-center {
     align-items: center;
 }
 
@@ -158,6 +162,8 @@ figure {
     width: 100px;
     background-color: var(--secondary-color);
     border-radius: 4px;
+    height: 50px;
+    cursor: pointer;
 }
 
 .tag-btn {
