@@ -191,4 +191,44 @@ const init = async (offset = 0) => {
   });
 };
 
+ 
+        if (searchTerm) {
+            loadGifs(giphyObj.search_api(), updateMainView);
+        } else {
+            loadGifs(giphyObj.trending_api(), updateMainView);
+        }
+
+        //Inifinite loading wth scroll event
+        window.addEventListener('scroll', () => {
+            console.log("scrolled", window.scrollY) //scrolled from top
+            console.log(window.innerHeight) //visible part of screen
+
+            if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+                giphyObj.updateOffset();
+                //update css
+                let list = document.querySelector("#gifs-list");
+                list.style.height = `${giphyObj.offset*10}vh`;
+                if (searchTerm) {
+                    loadGifs(giphyObj.search_api(), updateMainView);
+                } else {
+                    loadGifs(giphyObj.trending_api(), updateMainView);
+                }
+
+
+            }
+
+        })
+
+        //search event
+        const searchBar = document.getElementById("search");
+        searchBar.addEventListener("search", (e) => {
+            searchEvent(e, giphyObj)
+        });
+
+        document.getElementById('search-btn').addEventListener('click', (e) => {
+            searchEvent(e, giphyObj)
+        });
+    }
+    //Funcion de inicio
 init();
+ 
