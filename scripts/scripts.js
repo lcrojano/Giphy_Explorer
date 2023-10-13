@@ -162,7 +162,7 @@ const init = async (offset = 0) => {
   window.addEventListener('scroll', () => {
     if (
       !loading &&
-      window.innerHeight + window.scrollY >= document.body.offsetHeight - 200
+      window.innerHeight + window.scrollY >= document.body.offsetHeight - 1
     ) {
       loading = true;
       giphyObj.updateOffset();
