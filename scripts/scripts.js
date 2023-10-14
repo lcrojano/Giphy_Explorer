@@ -166,7 +166,9 @@ const init = async (offset = 0) => {
     ) {
       loading = true;
       giphyObj.updateOffset();
-
+      //update css
+      let list = document.querySelector("#gifs-list");
+      list.style.height = `${giphyObj.offset*10}vh`;
       if (searchTerm) {
         loadGifs(giphyObj.search_api(), (gifs) => {
           updateMainView(gifs);
