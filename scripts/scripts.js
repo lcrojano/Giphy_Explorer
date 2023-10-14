@@ -186,17 +186,17 @@ const init = async (offset = 0) => {
     searchEvent(e, giphyObj);
   });
 
-  document.getElementById('search-btn').addEventListener('click', (e) => {
-    searchEvent(e, giphyObj);
-  });
-};
-
  
         if (searchTerm) {
             loadGifs(giphyObj.search_api(), updateMainView);
         } else {
             loadGifs(giphyObj.trending_api(), updateMainView);
         }
+  document.getElementById('search-btn').addEventListener('click', (e) => {
+    searchEvent(e, giphyObj);
+  });
+};
+
 
         //Inifinite loading wth scroll event
         window.addEventListener('scroll', () => {
@@ -228,7 +228,7 @@ const init = async (offset = 0) => {
         document.getElementById('search-btn').addEventListener('click', (e) => {
             searchEvent(e, giphyObj)
         });
-    }
+    
     //Funcion de inicio
 init();
  
