@@ -12,9 +12,14 @@
 </head>
 
 <body class="flex-col align-items-center">
-     <button onclick="topFunction()" id="myBtn" title="Go to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-     </button> 
+    <button onclick="topFunction()" id="myBtn" title="Go to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-arrow-up">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </button>
     <section class="container flex-col justify-content-center">
         <header class="flex-row justify-content-btw align-items-center">
             <div>
@@ -25,11 +30,13 @@
         </header>
         <section class="flex-col justify-content-center">
 
-            <div class="flex-row justify-content-btw align-items-center">
-                <input class="grow-2" type="search" name="search" id="search">
-                <button id="search-btn" class="primary-btn"><img src="https://giphy.com/static/img/search-icon.svg" width="30"></button>
+            <div class="flex-row justify-content-btw align-items-center stickysearchbar">
+                <input class="grow-2 sticky" type="search" name="search" id="search">
+                <button id="search-btn" class="primary-btn"><img src="https://giphy.com/static/img/search-icon.svg"
+                        width="30"></button>
             </div>
         </section>
+
         <section class="flex-row justify-content-btw  align-items-center">
             <div class="flex-col ">
                 <strong id="search-term">GATOS</strong>
@@ -52,22 +59,22 @@
     <script type="text/javascript">
         mybutton = document.getElementById("myBtn");
 
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {scrollFunction()};
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
 
-    function scrollFunction() {
-      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "block";
-      } else {
-        mybutton.style.display = "none";
-      }
-    }
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
 
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    } 
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        } 
     </script>
 </body>
 

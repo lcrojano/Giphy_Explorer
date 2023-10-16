@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Press+Start+2P&display=swap');
+
 :root {
     --principal-color: #121212;
     --principal-color-v2: #595757;
@@ -10,23 +11,24 @@
     --principal-text-color: white;
     --primary-text-color: #121212;
 }
+
 #myBtn {
-  display: none; 
-  position: fixed; 
-  bottom: 20px; 
-  right: 30px;
-  z-index: 99;
-  border: none;
-  outline: none;
-  background-color: var(--principal-text-color);
-  color: var(--primary-text-color);
-  cursor: pointer;
-  padding: 15px;
-  border-radius:20px;
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--principal-text-color);
+    color: var(--primary-text-color);
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 20px;
 }
 
 #myBtn:hover {
-  background-color: #eee;
+    background-color: #eee;
 }
 
 body {
@@ -50,6 +52,14 @@ h1 {
 
 /* Search bar*/
 
+.stickysearchbar {
+
+    position: fixed;
+    top: 120px;
+    right: 155px;
+    left: 155px;
+}
+
 input[type="search"] {
     border: none;
     background: var(--principal-text-color);
@@ -60,6 +70,11 @@ input[type="search"] {
     box-sizing: border-box;
     height: 50px;
     font-size: 18px;
+    /* position: fixed;
+    top: 120px;
+    left: 150px;
+    right: 320px; */
+
 }
 
 input[type="search"]::placeholder {
@@ -71,6 +86,10 @@ input[type="search"]::placeholder {
     height: 52px;
     border-radius: 4px;
     margin-left: 15px;
+    /* position: fixed;
+    top: 129px;
+    left: 80%;
+    right: 0; */
 }
 
 #search-btn:focus,
@@ -84,6 +103,7 @@ input[type="search"]:focus {
     font-size: 28px;
     text-transform: uppercase;
     margin-bottom: 10px;
+    margin-top: 60px;
 }
 
 
@@ -92,6 +112,7 @@ input[type="search"]:focus {
 .tag-menu {
     list-style: none;
     gap: 15px;
+    margin-top: 80px;
 }
 
 

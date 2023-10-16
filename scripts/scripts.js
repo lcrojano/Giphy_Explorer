@@ -59,6 +59,8 @@ const searchEvent = (e, giphyObj) => {
   queryParams.set('q', q);
   history.replaceState(null, null, '?' + queryParams.toString());
   setHistory(q);
+    document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0;
 };
 /**Load infinite */
 // listen for scroll event and load more images if we reach the bottom of window
