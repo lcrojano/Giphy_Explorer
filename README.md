@@ -23,13 +23,18 @@ Giphy_Exolorer uses the following TechStack :
 
 - ⭐ If you have any questions or problems with Giphy_Explorer, please feel free to contact us🍫
 
-- ## Contribution Guidelines
+## Contribution Guidelines
 
 1. Select the respective issue
 
 2. Get assigned to the issue
 
 3. Fork the repository
+* First, fork the repository to your GitHub account.
+* Then clone from your forked repository to your local machine.
+```
+git clone https://github.com/{your GitHub username}/Giphy_Explorer.git
+```
 
 4. Create a new branch
 ```
