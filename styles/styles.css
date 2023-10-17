@@ -50,12 +50,15 @@ h1 {
     padding: 20px 0;
 }
 
+.container .headerdata {
+    margin-top: 60px;
+}
+
 /* Search bar*/
 
 .stickysearchbar {
-
     position: fixed;
-    top: 120px;
+    top: 20px;
     right: 155px;
     left: 155px;
 }
@@ -70,11 +73,6 @@ input[type="search"] {
     box-sizing: border-box;
     height: 50px;
     font-size: 18px;
-    /* position: fixed;
-    top: 120px;
-    left: 150px;
-    right: 320px; */
-
 }
 
 input[type="search"]::placeholder {
@@ -86,10 +84,6 @@ input[type="search"]::placeholder {
     height: 52px;
     border-radius: 4px;
     margin-left: 15px;
-    /* position: fixed;
-    top: 129px;
-    left: 80%;
-    right: 0; */
 }
 
 #search-btn:focus,
@@ -103,7 +97,6 @@ input[type="search"]:focus {
     font-size: 28px;
     text-transform: uppercase;
     margin-bottom: 10px;
-    margin-top: 60px;
 }
 
 
@@ -112,7 +105,6 @@ input[type="search"]:focus {
 .tag-menu {
     list-style: none;
     gap: 15px;
-    margin-top: 80px;
 }
 
 
