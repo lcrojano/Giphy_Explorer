@@ -129,6 +129,7 @@ figure {
     width: 100%;
     flex-grow: auto;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .autor img {
@@ -214,4 +215,67 @@ figure {
 
 .flex-wrap {
     flex-wrap: wrap;
+}
+
+/* Share modal */
+
+.modal{
+    height: 100vh;
+    width: 100%;
+    display: none;
+    position: fixed;
+
+}
+
+.display-modal{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal::before{
+    content: '';
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background-color: black;
+    opacity: 0.8;
+    top: 0;
+    left: 0;
+}
+
+.share-modal{
+    color: black;
+    border-radius:2rem;
+    padding: 2rem;
+    width: 250px;
+    z-index: 101;
+    background-color: white;
+    text-align: center;
+}
+
+.share-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.share-head i{
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+.social-links{
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    font-size: 3rem;
+    padding-left: 0;
+}
+
+.social-links li{
+    cursor: pointer;
+}
+
+.copy-btn{
+    width: 100%;
 }

@@ -107,6 +107,20 @@ const updateMainView = (gifs) => {
     //1. find element and build template
     let main = document.querySelector('#gifs-list'); //Esta en el dom
     let figure = document.createElement('figure', { class: 'figure' }); //Este no esta en el dom todavia
+    let modal = document.querySelector('.modal');
+    let url;
+    figure.addEventListener('click', (e)=>{
+      modal.classList.add('display-modal');
+      url = e.target.src;
+    });
+    modal.addEventListener('click', (e) =>{
+      if(e.target.id === 'close' || e.target.id === 'modal-overlay'){
+        modal.classList.remove('display-modal');
+      }
+      if(e.target.id === 'copy'){
+        console.log(url);
+      }
+    })
 
     figure.innerHTML = `
             <picture class="picture ">
