@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/72fc4d72f1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/styles.css">
     <script src="scripts/scripts.js" defer></script>
@@ -12,6 +13,22 @@
 </head>
 
 <body class="flex-col align-items-center">
+    <section class="modal" id="modal-overlay">
+        <div class="share-modal">
+            <div class="share-head">
+                <h2>Share GIF</h2>
+                <i class="fa-solid fa-x" id="close"></i>
+            </div>
+            <ul class="social-links">
+                <li><i class="fa-brands fa-square-facebook"></i></li>
+                <li><i class="fa-brands fa-square-twitter"></i></li>
+                <li><i class="fa-brands fa-square-instagram"></i></li>
+                <li><i class="fa-brands fa-square-pinterest"></i></li>
+            </ul>
+            <button id="copy" class="secondary-btn copy-btn">Copy Link</button>
+        </div>
+    </section>
+    <section class="container flex-col justify-content-center">
     <button onclick="topFunction()" id="myBtn" title="Go to top">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -20,7 +37,6 @@
             <polyline points="5 12 12 5 19 12"></polyline>
         </svg>
     </button>
-    <section class="container flex-col justify-content-center">
         <header class="flex-row justify-content-btw align-items-center headerdata">
             <div>
                 <h1 class="grow-2">Giphy Search</h1>
