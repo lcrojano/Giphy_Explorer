@@ -207,6 +207,27 @@ const init = async (offset = 0) => {
   document.getElementById('search-btn').addEventListener('click', (e) => {
     searchEvent(e, giphyObj);
   });
+
+
+  const toggle = document.querySelector("#toggle");
+  const toggleImage = document.querySelector("#toggle-image");
+  const searchInput = document.querySelector("input");
+  toggle.addEventListener("click", modeSwitch);
+
+  let isLight = true;
+  const lightLamp = toggleImage.src = "./assets/images/lightLamp.svg";
+  const darkLamp = toggleImage.src = "./assets/images/darklamp.svg";
+
+  function modeSwitch() {
+    isLight = !isLight;
+    // toggle button image light/dark switcher
+    isLight ? toggleImage.src = darkLamp : toggleImage.src = lightLamp;
+    // toggle light/dark mode
+    var rootElement = document.body;
+    rootElement.classList.toggle("dark-mode");
+    // toggle input Search background and color
+    isLight ? searchInput.classList.remove("dark") : searchInput.classList.add("dark");
+  };
 };
 
 init();

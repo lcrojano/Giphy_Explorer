@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Press+Start+2P&display=swap');
 
 :root {
-    --principal-color: #121212;
+    /* --principal-color: #121212; */
     --principal-color-v2: #595757;
     --primary-color: #6F4FFF;
     --secondary-color: #8A3DFF;
@@ -10,6 +10,11 @@
     --secondary-font: 'Press Start 2P', cursive;
     --principal-text-color: white;
     --primary-text-color: #121212;
+}
+
+.dark-mode {
+    background-color: var(--primary-text-color);
+    color: var(--principal-text-color);
 }
 
 #myBtn {
@@ -32,12 +37,14 @@
 }
 
 body {
-    background-color: var(--principal-color);
-    color: var(--principal-text-color);
+    background-color: var(--principal-text-color);
+    color: var(--primary-text-color);
     font-family: var(--primary-font);
     box-sizing: border-box;
     max-width: 100%;
 }
+
+
 
 h1 {
     font-family: var(--secondary-font);
@@ -65,21 +72,26 @@ h1 {
 
 input[type="search"] {
     border: none;
-    background: var(--principal-text-color);
+    background: var(--primary-text-color);
     margin: 10px 0;
     padding: 7px 8px;
-    color: var(--primary-text-color);
+    color: var(--principal-text-color);
     border-radius: 4px;
     box-sizing: border-box;
     height: 50px;
     font-size: 18px;
 }
 
+.dark {
+    background: var(--principal-text-color) !important;
+    color: var(--primary-text-color) !important;
+}
+
 input[type="search"]::placeholder {
     color: #bbb;
 }
 
-#search-btn {
+#search-btn, #toggle {
     width: 52px;
     height: 52px;
     border-radius: 4px;
