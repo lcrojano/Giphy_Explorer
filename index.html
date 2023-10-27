@@ -39,14 +39,13 @@
     </button>
         <header class="flex-row justify-content-btw align-items-center headerdata">
             <div>
-                <h1 class="grow-2">Giphy Search</h1>
+                <h1 class="grow-2" id="logo">Giphy Search</h1>
                 <caption>By Luis Rojano</caption>
             </div>
             <button class="secondary-btn">Log in</button>
         </header>
-        <section class="flex-col justify-content-center">
-
-            <div class="flex-row justify-content-btw align-items-center stickysearchbar">
+        <section class="flex-col justify-content-center stickysearchbar" id="searchbar">
+            <div class="flex-row justify-content-btw align-items-center ">
                 <input class="grow-2 sticky" type="search" name="search" id="search" placeholder="Search GIF here">
                 <button id="search-btn" class="primary-btn"><img src="https://giphy.com/static/img/search-icon.svg"
                         width="30"></button>
@@ -76,15 +75,36 @@
     <aside></aside>
     <script type="text/javascript">
         mybutton = document.getElementById("myBtn");
+        logo = document.getElementById("logo");
+        searchbar = document.getElementById("searchbar");
+
+        // Indicate scroll down or scroll up
+        var scrollBefore = 0;
 
         // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function () { scrollFunction() };
 
         function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            const scrolled = window.scrollY;
+
+            if (window.pageYOffset > 50 && scrollBefore < window.scrollY) {
                 mybutton.style.display = "block";
-            } else {
+                logo.classList.add("fixedlogo", "show");
+                logo.classList.remove("logo");
+
+                searchbar.classList.remove("stickysearchbar");
+                searchbar.classList.add("fixedsearchbar");
+                scrollBefore = scrolled;
+            } 
+            else if (window.pageYOffset < 50) {
+                scrollBefore = window.scrollY;
                 mybutton.style.display = "none";
+                
+                searchbar.classList.add("stickysearchbar");
+                searchbar.classList.remove("fixedsearchbar");
+
+                logo.classList.remove("fixedlogo", "show");
+                logo.classList.add("logo");
             }
         }
 

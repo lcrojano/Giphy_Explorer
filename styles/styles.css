@@ -44,10 +44,23 @@ body {
     max-width: 100%;
 }
 
-
-
 h1 {
     font-family: var(--secondary-font);
+}
+
+.logo {
+   position: relative;
+}
+
+.fixedlogo {
+    position: fixed;
+    top: -60px;  
+}
+
+.show {
+    transition: transform 1s ease;
+    transition-delay: 0.5s;
+    transform: translateY(75px);
 }
 
 .container {
@@ -58,16 +71,24 @@ h1 {
 }
 
 .container .headerdata {
-    margin-top: 60px;
+    margin-top: 5px;
 }
 
 /* Search bar*/
 
 .stickysearchbar {
+    position: sticky;
+    top: 20px;
+}
+
+.fixedsearchbar {
     position: fixed;
     top: 20px;
-    right: 155px;
-    left: 155px;
+    right: 31%;
+    left: 300px;
+    transition-delay: 2s;
+    transform: translateX(40%);
+    transition: transform 0.4s ease;
 }
 
 input[type="search"] {
