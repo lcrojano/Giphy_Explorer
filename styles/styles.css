@@ -17,6 +17,18 @@
   color: var(--principal-text-color);
 }
 
+.dark-mode #github-link {
+  background-color: #f9f9f9;
+}
+
+.dark-mode #github-link a {
+  color: black;
+}
+
+.dark-mode #github-link a img {
+  filter: invert(1); /* Change the icon color to black */
+}
+
 #myBtn {
   display: none;
   position: fixed;
