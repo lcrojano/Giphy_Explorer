@@ -324,3 +324,45 @@ figure {
 .copy-btn{
     width: 100%;
 }
+
+
+#github-link {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  /* transform: translateX(-50%); */
+  clip-path: polygon(1% 0, 100% 100%, 100% 1%);
+  background-color: #2b3137;
+}
+
+#github-link a {
+  width: 100px;
+  height: 100px;
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 45px;
+  padding-top: 10px;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+}
+
+#github-link a img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  background-position: center;
+}
+#github-link h1 {
+  font-size: 10px;
+  font-family: sans-serif;
+}
