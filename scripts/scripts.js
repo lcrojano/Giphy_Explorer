@@ -101,6 +101,22 @@ const setHistory = (q) => {
   menu.prepend(li);
 };
 
+function shareOnFacebook(url) {
+  const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+  window.open(shareUrl, '_blank');
+}
+
+function shareOnTwitter(url, text) {
+  const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+  window.open(shareUrl, '_blank');
+}
+
+function shareOnPinterest(url, imageUrl, description) {
+  const shareUrl = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(imageUrl)}&description=${encodeURIComponent(description)}`;
+  window.open(shareUrl, '_blank');
+}
+
+
 //View updaters
 const updateMainView = (gifs) => {
   gifs.forEach((gif) => {
@@ -109,17 +125,44 @@ const updateMainView = (gifs) => {
     let figure = document.createElement('figure', { class: 'figure' }); //Este no esta en el dom todavia
     let modal = document.querySelector('.modal');
     let url;
+    let text, description;
     figure.addEventListener('click', (e)=>{
       modal.classList.add('display-modal');
       url = e.target.src;
+      text = "Check out this amazing Gif!";
+      description = "Check out this amazing Gif!";
+
+      modal.addEventListener('click', (e) =>{
+      
+        if(e.target.id === 'copy'){
+          navigator.clipboard.writeText(url);
+          // Show "Copied" message
+          e.target.textContent = 'Copied';
+
+          // Reset the button text to "Copy" after 2 seconds (2000 milliseconds)
+          setTimeout(() => {
+            e.target.textContent = 'Copy';
+          }, 2000);
+        }
+        if(e.target.id === 'share-fb'){
+          shareOnFacebook(url);
+        }
+        if(e.target.id === 'share-twitter'){
+          shareOnTwitter(url,text);
+        }
+        if(e.target.id === 'share-pinterest'){
+          shareOnPinterest(url,url,description);
+        }
+        // if(e.target.id === 'share-insta'){
+        //   shareOnInstagram(url,description);
+        // }
+      })
     });
     modal.addEventListener('click', (e) =>{
       if(e.target.id === 'close' || e.target.id === 'modal-overlay'){
         modal.classList.remove('display-modal');
       }
-      if(e.target.id === 'copy'){
-        console.log(url);
-      }
+
     })
 
     figure.innerHTML = `
