@@ -59,8 +59,8 @@ const searchEvent = (e, giphyObj) => {
   queryParams.set('q', q);
   history.replaceState(null, null, '?' + queryParams.toString());
   setHistory(q);
-    document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0;
 };
 /**Load infinite */
 // listen for scroll event and load more images if we reach the bottom of window
@@ -109,37 +109,33 @@ const updateMainView = (gifs) => {
     let figure = document.createElement('figure', { class: 'figure' }); //Este no esta en el dom todavia
     let modal = document.querySelector('.modal');
     let url;
-    figure.addEventListener('click', (e)=>{
+    figure.addEventListener('click', (e) => {
       modal.classList.add('display-modal');
       url = e.target.src;
     });
-    modal.addEventListener('click', (e) =>{
-      if(e.target.id === 'close' || e.target.id === 'modal-overlay'){
+    modal.addEventListener('click', (e) => {
+      if (e.target.id === 'close' || e.target.id === 'modal-overlay') {
         modal.classList.remove('display-modal');
       }
-      if(e.target.id === 'copy'){
+      if (e.target.id === 'copy') {
         console.log(url);
       }
     })
 
     figure.innerHTML = `
             <picture class="picture ">
-                <source srcset="${
-                  gif.images?.downsized?.url
-                }" type="image/png" media="(min-width:1920px)">
-                <source srcset="${
-                  gif.images?.downsized?.url
-                }" type="image/png" media="(min-width:1200px)">
-                <source srcset="${
-                  gif.images?.downsized?.url
-                }" type="image/png" media="(min-width:700px)">
+                <source srcset="${gif.images?.downsized?.url
+      }" type="image/png" media="(min-width:1920px)">
+                <source srcset="${gif.images?.downsized?.url
+      }" type="image/png" media="(min-width:1200px)">
+                <source srcset="${gif.images?.downsized?.url
+      }" type="image/png" media="(min-width:700px)">
                 <img src="${gif.images?.downsized?.url}" alt="Test" class="abc">
             </picture>
             <figcaption>
                 <div class="autor flex-row aling-items-center">
-                    <img src="${
-                      gif.user?.avatar_url || 'https://placehold.jp/150x150.png'
-                    }" alt="">
+                    <img src="${gif.user?.avatar_url || 'https://placehold.jp/150x150.png'
+      }" alt="">
                     <div class="info flex-col ">
                         <p><strong>${gif.user?.username || 'autor'}</strong></p>
                         <p>${gif.source_tld}</p>
@@ -184,7 +180,7 @@ const init = async (offset = 0) => {
       giphyObj.updateOffset();
       //update css
       let list = document.querySelector("#gifs-list");
-      list.style.height = `${giphyObj.offset*10}vh`;
+      list.style.height = `${giphyObj.offset * 10}vh`;
       if (searchTerm) {
         loadGifs(giphyObj.search_api(), (gifs) => {
           updateMainView(gifs);
@@ -229,5 +225,20 @@ const init = async (offset = 0) => {
     isLight ? searchInput.classList.remove("dark") : searchInput.classList.add("dark");
   };
 };
+
+// Add an event listener for the "Upload GIF" button
+document.getElementById('upload-button').addEventListener('click', () => {
+  // Trigger the hidden file input
+  document.getElementById('file-upload').click();
+});
+
+// Add an event listener for the file input to handle the selected GIF
+document.getElementById('file-upload').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+
+  if (file && file.type === 'image/gif') {
+    console.log("file upload successfull")
+  }
+});
 
 init();
