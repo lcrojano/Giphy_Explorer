@@ -50,7 +50,14 @@
                 <h1 class="grow-2" id="logo">Giphy Search</h1>
                 <caption>By Luis Rojano</caption>
             </div>
-            <button class="secondary-btn">Log in</button>
+            <div style="display: flex">
+                <button class="secondary-btn">Log in</button>
+                <!-- Add this button to trigger the modal for uploading GIFs -->
+                <button id="upload-button" class="secondary-btn" style="margin-left: 15px;">Upload GIF</button>
+
+                <!-- Add a hidden input element for file selection -->
+                <input type="file" id="file-upload" accept=".gif" style="display: none">   
+            </div>
         </header>
         <section class="flex-col justify-content-center stickysearchbar" id="searchbar">
             <div class="flex-row justify-content-btw align-items-center ">
@@ -59,6 +66,23 @@
                         width="30"></button>
                 <button id="toggle" class="primary-btn onClick="toggleLightDark()"><img id="toggle-image" src="./assets/images/lightLamp.svg" alt="https://www.flaticon.com/free-icons/electronics"
                         width="30"></button>  
+            </div>
+        </section>
+
+        <!-- Update the modal for sharing GIFs -->
+        <section class="modal" id="modal-overlay">
+            <div class="share-modal">
+                <div class="share-head">
+                    <h2>Share GIF</h2>
+                    <i class="fa-solid fa-x" id="close"></i>
+                </div>
+                <ul class="social-links">
+                    <li><i class="fa-brands fa-square-facebook"></i></li>
+                    <li><i class="fa-brands fa-square-twitter"></i></li>
+                    <li><i class="fa-brands fa-square-instagram"></i></li>
+                    <li><i class="fa-brands fa-square-pinterest"></i></li>
+                </ul>
+                <button id="copy" class="secondary-btn copy-btn">Copy Link</button>
             </div>
         </section>
 
