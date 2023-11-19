@@ -169,6 +169,7 @@ const updateMainView = (gifs) => {
     })
 
     figure.innerHTML = `
+
             <picture class="picture ">
                 <source srcset="${gif.images?.downsized?.url
       }" type="image/png" media="(min-width:1920px)">
@@ -177,6 +178,7 @@ const updateMainView = (gifs) => {
                 <source srcset="${gif.images?.downsized?.url
       }" type="image/png" media="(min-width:700px)">
                 <img src="${gif.images?.downsized?.url}" alt="Test" class="abc">
+ 		<button id="fav" onclick="getGifInfo(event)" class="fav">Add favorite</button>
             </picture>
             <figcaption>
                 <div class="autor flex-row aling-items-center">
@@ -286,5 +288,28 @@ document.getElementById('file-upload').addEventListener('change', async (e) => {
     console.log("file upload successfull")
   }
 });
+
+const getGifInfo = function(e) {
+
+  e.stopPropagation();
+  const figure = e.target.closest("figure");
+  const imageElement = figure.querySelector(".picture img");
+  const imageUrl = imageElement.getAttribute("src");
+  const imageAlt = imageElement.getAttribute("alt");
+
+  const authorImage = figure.querySelector(".autor img").getAttribute("src");
+  const authorName = figure.querySelector(".autor strong").innerText;
+		setFavs(imageUrl,{imageUrl,imageAlt,authorName,authorImage});
+};
+
+
+const setFavs = function(link,gif){
+	 const localStorage = window.localStorage
+		const favsString = localStorage.getItem("gifs")
+	 const favs = favsString ? JSON.parse(favsString) : {};
+		favs[link] = gif;
+		const newFavs = JSON.stringify(favs);
+		localStorage.setItem("gifs", newFavs);
+}; 
 
 init();
