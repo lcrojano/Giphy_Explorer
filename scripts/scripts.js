@@ -187,7 +187,7 @@ const updateMainView = (gifs) => {
                   gif.images?.downsized?.url
                 }" type="image/png" media="(min-width:700px)">
                 <img src="${gif.images?.downsized?.url}" alt="Test" class="abc">
- 		<button id="fav" onclick="getGifInfo(event)" class="fav">Add favorite</button>
+ 		            <button id="fav" onclick="getGifInfo(event)" class="fav">Add favorite</button>
             </picture>
             <figcaption>
                 <div class="autor flex-row aling-items-center">
