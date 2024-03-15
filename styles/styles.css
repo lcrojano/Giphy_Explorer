@@ -124,7 +124,7 @@ input[type="search"]::placeholder {
     color: #bbb;
 }
 
-#search-btn, #toggle {
+#search-btn, #toggle, #fav-btn, #home-btn {
     width: 52px;
     height: 52px;
     border-radius: 4px;
