@@ -1,153 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/72fc4d72f1.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="styles/normalize.css">
-    <link rel="stylesheet" href="styles/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/72fc4d72f1.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="styles/normalize.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
     <script src="scripts/favs.js" defer></script>
-    <title>Giphy Search | @lcrojano </title>
-</head>
+    <title>Giphy Search | @lcrojano</title>
+  </head>
 
-<body class="flex-col align-items-center">
+  <body class="flex-col align-items-center">
     <div id="github-link">
-        <a href="https://github.com/lcrojano/Giphy_Explorer" target="_blank">
-            <img src="assets/images/github-mark-white.png" alt="GitHub">
-            <h1>Fork Me</h1>
-            
-        </a>
+      <a href="https://github.com/lcrojano/Giphy_Explorer" target="_blank">
+        <img src="assets/images/github-mark-white.png" alt="GitHub" />
+        <h1>Fork Me</h1>
+      </a>
     </div>
     <section class="modal" id="modal-overlay">
-        <div class="share-modal">
-            <div class="share-head">
-                <h2>Share GIF</h2>
-                <i class="fa-solid fa-x" id="close"></i>
-            </div>
-            <ul class="social-links">
-                <li><i id="share-fb" class="fa-brands fa-square-facebook"></i></li>
-                <li><i id="share-twitter" class="fa-brands fa-square-twitter"></i></li>
-                <!-- <li><i id="share-insta" class="fa-brands fa-square-instagram"></i></li> -->
-                <!-- not possible due to instagram api restrictions -->
-                <li><i id="share-pinterest" class="fa-brands fa-square-pinterest"></i></li>
-            </ul>
-            <button id="copy" class="secondary-btn copy-btn">Copy Link</button>
-												<button id="fav"  class="secondary-btn">Remove</button>
+      <div class="share-modal">
+        <div class="share-head">
+          <h2>Share GIF</h2>
+          <i class="fa-solid fa-x" id="close"></i>
         </div>
+        <ul class="social-links">
+          <li><i id="share-fb" class="fa-brands fa-square-facebook"></i></li>
+          <li>
+            <i id="share-twitter" class="fa-brands fa-square-twitter"></i>
+          </li>
+          <!-- <li><i id="share-insta" class="fa-brands fa-square-instagram"></i></li> -->
+          <!-- not possible due to instagram api restrictions -->
+          <li>
+            <i id="share-pinterest" class="fa-brands fa-square-pinterest"></i>
+          </li>
+        </ul>
+        <button id="copy" class="secondary-btn copy-btn">Copy Link</button>
+        <button id="fav" class="secondary-btn">Remove</button>
+      </div>
     </section>
     <section class="container flex-col justify-content-center">
-    <button onclick="topFunction()" id="myBtn" title="Go to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-arrow-up">
-            <line x1="12" y1="19" x2="12" y2="5"></line>
-            <polyline points="5 12 12 5 19 12"></polyline>
+      <button onclick="topFunction()" id="myBtn" title="Go to top">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-arrow-up"
+        >
+          <line x1="12" y1="19" x2="12" y2="5"></line>
+          <polyline points="5 12 12 5 19 12"></polyline>
         </svg>
-    </button>
-        <header class="flex-row justify-content-btw align-items-center headerdata">
-            <div>
-                <h1 class="grow-2" id="logo">Giphy Search</h1>
-                <caption>By Luis Rojano</caption>
-            </div>
-            <div style="display: flex">
-                <button class="secondary-btn">Log in</button>
-                <!-- Add this button to trigger the modal for uploading GIFs -->
-                <button id="upload-button" class="secondary-btn" style="margin-left: 15px;">Upload GIF</button>
+      </button>
+      <header
+        class="flex-row justify-content-btw align-items-center headerdata"
+      >
+        <div>
+          <h1 class="grow-2" id="logo">Giphy Search</h1>
+          <caption>
+            By Luis Rojano
+          </caption>
+        </div>
+        <div style="display: flex">
+          <button class="secondary-btn">Log in</button>
+          <!-- Add this button to trigger the modal for uploading GIFs -->
+          <button
+            id="upload-button"
+            class="secondary-btn"
+            style="margin-left: 15px"
+          >
+            Upload GIF
+          </button>
 
-                <!-- Add a hidden input element for file selection -->
-                <input type="file" id="file-upload" accept=".gif" style="display: none">   
-            </div>
-        </header>
-        <section class="flex-col justify-content-center stickysearchbar" id="searchbar">
-            <div class="flex-row justify-content-btw align-items-center ">
-                <input class="grow-2 sticky" type="search" name="search" id="search" placeholder="Search GIF here">
-                <button id="search-btn" class="primary-btn"><img src="https://giphy.com/static/img/search-icon.svg"
-                        width="30"></button>
-                <button id="toggle" class="primary-btn" onClick="toggleLightDark()"><img id="toggle-image" src="./assets/images/lightLamp.svg" alt="https://www.flaticon.com/free-icons/electronics"
-                        width="30"></button>  
-																<button class="primary-btn"><a href="./index.html">home</a>	</button>
-            </div>
-        </section>
+          <!-- Add a hidden input element for file selection -->
+          <input
+            type="file"
+            id="file-upload"
+            accept=".gif"
+            style="display: none"
+          />
+        </div>
+      </header>
+      <section
+        class="flex-col justify-content-center stickysearchbar"
+        id="searchbar"
+      >
+        <div class="flex-row justify-content-btw align-items-center">
+          <input
+            class="grow-2 sticky"
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search GIF here"
+          />
+          <button id="search-btn" class="primary-btn">
+            <img
+              src="https://giphy.com/static/img/search-icon.svg"
+              width="30"
+            />
+          </button>
+          <button id="toggle" class="primary-btn" onClick="toggleLightDark()">
+            <img
+              id="toggle-image"
+              src="./assets/images/lightLamp.svg"
+              alt="https://www.flaticon.com/free-icons/electronics"
+              width="30"
+            />
+          </button>
+          <button class="primary-btn"><a href="./index.html">home</a></button>
+        </div>
+      </section>
 
-        <!-- Update the modal for sharing GIFs -->
-        <section class="modal" id="modal-overlay">
-            <div class="share-modal">
-                <div class="share-head">
-                    <h2>Share GIF</h2>
-                    <i class="fa-solid fa-x" id="close"></i>
-                </div>
-                <ul class="social-links">
-                    <li><i class="fa-brands fa-square-facebook"></i></li>
-                    <li><i class="fa-brands fa-square-twitter"></i></li>
-                    <li><i class="fa-brands fa-square-instagram"></i></li>
-                    <li><i class="fa-brands fa-square-pinterest"></i></li>
-                </ul>
-                <button id="copy" class="secondary-btn copy-btn">Copy Link</button>
-            </div>
-        </section>
+      <!-- Update the modal for sharing GIFs -->
+      <section class="modal" id="modal-overlay">
+        <div class="share-modal">
+          <div class="share-head">
+            <h2>Share GIF</h2>
+            <i class="fa-solid fa-x" id="close"></i>
+          </div>
+          <ul class="social-links">
+            <li><i class="fa-brands fa-square-facebook"></i></li>
+            <li><i class="fa-brands fa-square-twitter"></i></li>
+            <li><i class="fa-brands fa-square-instagram"></i></li>
+            <li><i class="fa-brands fa-square-pinterest"></i></li>
+          </ul>
+          <button id="copy" class="secondary-btn copy-btn">Copy Link</button>
+        </div>
+      </section>
 
-        <section class="flex-row justify-content-btw  align-items-center searchtermdata">
-            <div class="flex-col ">
-                <strong id="search-term">Favorites</strong>
-                <span id="">2000</span>
-            </div>
-            <nav>
-                <menu id="history" class="flex-row tag-menu ">
+      <section
+        class="flex-row justify-content-btw align-items-center searchtermdata"
+      >
+        <div class="flex-col">
+          <strong id="search-term">Favorites</strong>
+          <span id="">2000</span>
+        </div>
+        <nav>
+          <menu id="history" class="flex-row tag-menu"> </menu>
+        </nav>
+      </section>
 
-                </menu>
-            </nav>
-        </section>
-
-        <main>
-            <div id="gifs-list" class="flex-row flex-wrap justify-content-center"></div>
-        </main>
-
-
+      <main>
+        <div
+          id="gifs-list"
+          class="flex-row flex-wrap justify-content-center"
+        ></div>
+      </main>
     </section>
     <aside></aside>
     <script type="text/javascript">
-        mybutton = document.getElementById("myBtn");
-        logo = document.getElementById("logo");
-        searchbar = document.getElementById("searchbar");
+      mybutton = document.getElementById("myBtn");
+      logo = document.getElementById("logo");
+      searchbar = document.getElementById("searchbar");
 
-        // Indicate scroll down or scroll up
-        var scrollBefore = 0;
+      // Indicate scroll down or scroll up
+      var scrollBefore = 0;
 
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function () { scrollFunction() };
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function () {
+        scrollFunction();
+      };
 
-        function scrollFunction() {
-            const scrolled = window.scrollY;
+      function scrollFunction() {
+        const scrolled = window.scrollY;
 
-            if (window.pageYOffset > 50 && scrollBefore < window.scrollY) {
-                mybutton.style.display = "block";
-                logo.classList.add("fixedlogo", "show");
-                logo.classList.remove("logo");
+        if (window.pageYOffset > 50 && scrollBefore < window.scrollY) {
+          mybutton.style.display = "block";
+          logo.classList.add("fixedlogo", "show");
+          logo.classList.remove("logo");
 
-                searchbar.classList.remove("stickysearchbar");
-                searchbar.classList.add("fixedsearchbar");
-                scrollBefore = scrolled;
-            } 
-            else if (window.pageYOffset < 50) {
-                scrollBefore = window.scrollY;
-                mybutton.style.display = "none";
-                
-                searchbar.classList.add("stickysearchbar");
-                searchbar.classList.remove("fixedsearchbar");
+          searchbar.classList.remove("stickysearchbar");
+          searchbar.classList.add("fixedsearchbar");
+          scrollBefore = scrolled;
+        } else if (window.pageYOffset < 50) {
+          scrollBefore = window.scrollY;
+          mybutton.style.display = "none";
 
-                logo.classList.remove("fixedlogo", "show");
-                logo.classList.add("logo");
-            }
+          searchbar.classList.add("stickysearchbar");
+          searchbar.classList.remove("fixedsearchbar");
+
+          logo.classList.remove("fixedlogo", "show");
+          logo.classList.add("logo");
         }
+      }
 
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        } 
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      }
     </script>
-</body>
-
+  </body>
 </html>
