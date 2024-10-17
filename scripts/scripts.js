@@ -18,7 +18,6 @@ class GiphyObj {
 const getUrlParams = () => {
   const params = new URLSearchParams(window.location.search);
   let query = decodeURIComponent(params.get("q"));
-  let url = "";
   if (query == "null") {
     query = "";
   }
@@ -213,7 +212,7 @@ const updateParamView = (q) => {
   searchElement.innerHTML = text;
 };
 
-const init = async (offset = 0) => {
+const init = async () => {
   const searchTerm = getUrlParams();
   const giphyObj = new GiphyObj();
   giphyObj.q = searchTerm;
@@ -299,7 +298,8 @@ document.getElementById("file-upload").addEventListener("change", async (e) => {
     console.log("file upload successfull");
   }
 });
-
+// Below function is basically used in HTML
+/* eslint-disable no-unused-vars */
 const getGifInfo = function (e) {
   e.stopPropagation();
   const figure = e.target.closest("figure");

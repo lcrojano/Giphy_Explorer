@@ -1,0 +1,34 @@
+{
+  "name": "giphy_explorer",
+  "version": "1.0.0",
+  "description": "- Search for the GIF that you have on your mind right now 💌",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky",
+    "lint": "eslint --max-warnings=0",
+    "commit": "cz"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@eslint/js": "^9.12.0",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-gitmoji": "^0.0.7",
+    "eslint": "^9.12.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.11.0",
+    "husky": "^9.1.6",
+    "prettier": "^3.3.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-gitmoji"
+    }
+  }
+}
