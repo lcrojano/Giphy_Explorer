@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -152,7 +152,7 @@
           <span id="">2000</span>
         </div>
         <nav>
-          <menu id="history" class="flex-row tag-menu"> </menu>
+          <menu id="history" class="flex-row tag-menu"></menu>
         </nav>
       </section>
 
@@ -165,9 +165,9 @@
     </section>
     <aside></aside>
     <script type="text/javascript">
-      mybutton = document.getElementById("myBtn");
-      logo = document.getElementById("logo");
-      searchbar = document.getElementById("searchbar");
+      mybutton = document.getElementById('myBtn');
+      logo = document.getElementById('logo');
+      searchbar = document.getElementById('searchbar');
 
       // Indicate scroll down or scroll up
       var scrollBefore = 0;
@@ -181,22 +181,22 @@
         const scrolled = window.scrollY;
 
         if (window.pageYOffset > 50 && scrollBefore < window.scrollY) {
-          mybutton.style.display = "block";
-          logo.classList.add("fixedlogo", "show");
-          logo.classList.remove("logo");
+          mybutton.style.display = 'block';
+          logo.classList.add('fixedlogo', 'show');
+          logo.classList.remove('logo');
 
-          searchbar.classList.remove("stickysearchbar");
-          searchbar.classList.add("fixedsearchbar");
+          searchbar.classList.remove('stickysearchbar');
+          searchbar.classList.add('fixedsearchbar');
           scrollBefore = scrolled;
         } else if (window.pageYOffset < 50) {
           scrollBefore = window.scrollY;
-          mybutton.style.display = "none";
+          mybutton.style.display = 'none';
 
-          searchbar.classList.add("stickysearchbar");
-          searchbar.classList.remove("fixedsearchbar");
+          searchbar.classList.add('stickysearchbar');
+          searchbar.classList.remove('fixedsearchbar');
 
-          logo.classList.remove("fixedlogo", "show");
-          logo.classList.add("logo");
+          logo.classList.remove('fixedlogo', 'show');
+          logo.classList.add('logo');
         }
       }
 

@@ -1,9 +1,9 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
+import globals from 'globals';
+import pluginJs from '@eslint/js';
 
 export default [
   // Define which files ESLint should target
-  { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
+  { files: ['**/*.js'], languageOptions: { sourceType: 'commonjs' } },
 
   // Define global variables for browser environments
   { languageOptions: { globals: globals.browser } },
@@ -12,5 +12,5 @@ export default [
   pluginJs.configs.recommended,
 
   // Add ignores for files or directories that shouldn't be linted
-  { ignores: ["node_modules", "dist"] } // Ignore node_modules and build/dist folder
+  { ignores: ['node_modules', 'dist'] }, // Ignore node_modules and build/dist folder
 ];
