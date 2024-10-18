@@ -1,0 +1,30 @@
+name: Enhancement Suggestion 💡
+description: Have any new suggestions for the project ? Please suggest!
+title: "[Enhancement] <write a small description here>"
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of your suggestion.
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Please add screenshots if applicable.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: no-duplicate-issues
+    attributes:
+      label: "Checklist"
+      options:
+        - label: "I have checked the existing issues."
+          required: true
+
+        - label: "I follow [Contributing Guidelines](https://github.com/lcrojano/Giphy_Explorer/blob/main/README.md) of this project."
+          required: true
