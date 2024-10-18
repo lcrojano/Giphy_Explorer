@@ -29,6 +29,10 @@
   filter: invert(1); /* Change the icon color to black */
 }
 
+.dark-mode .logo-link h1 {
+  color: var(--principal-text-color);
+}
+
 #myBtn {
   display: none;
   position: fixed;
