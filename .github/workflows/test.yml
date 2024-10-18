@@ -1,0 +1,29 @@
+Name: CI for the jest and Cypress
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build: 
+    runs-on:
+      ubuntu-lastest
+
+  steps:
+   - name: checkout
+     uses: actions/checkout@v3
+
+   - name: setup node.js
+     uses: actions/setup-node@v3
+     with:
+      node-version: "20"
+
+   - name: Install dependencies
+     run: npm install
+
+   - name: Run jest 
+     run: npm run jest
