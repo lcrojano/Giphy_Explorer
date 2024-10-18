@@ -64,6 +64,11 @@ h1 {
    position: relative;
 }
 
+.logo-link {
+    text-decoration: none;
+    color: var(--primary-text-color);
+}
+
 .fixedlogo {
     position: fixed;
     top: -60px;  
