@@ -382,3 +382,27 @@ figure {
   font-size: 10px;
   font-family: sans-serif;
 }
+/* Added Button styling that matches with the theme of the website */
+button {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+    background-color: black; /* Background color */
+    color: white; /* Text color */
+    border: 2px solid white; /* Border color */
+    border-radius: 0; /* No rounded corners for a pixelated look */
+    padding: 10px 20px; /* Padding for the button */
+    cursor: pointer; /* Change cursor on hover */
+    text-transform: uppercase; /* Uppercase text for a bold look */
+    letter-spacing: 1px; /* Spacing for a pixelated effect */
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0.5); /* Shadow to enhance the pixel look */
+    transition: all 0.2s ease; /* Smooth transition */
+}
+
+button:hover {
+    background-color: white; /* Background color on hover */
+    color: black; /* Text color on hover */
+    border: 2px solid black; /* Border color on hover */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); /* Shadow effect on hover */
+}
