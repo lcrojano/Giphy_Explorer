@@ -133,6 +133,11 @@ input[type='search']::placeholder {
   color: #bbb;
 }
 
+.dark-mode input[type='search'] {
+    background: var(--principal-text-color); /* White background in dark mode */
+    color: var(--primary-text-color); /* Black text in dark mode */
+} 
+
 #search-btn,
 #toggle,
 #fav-btn,
