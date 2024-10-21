@@ -14,7 +14,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
+            background-color: black;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,6 +24,7 @@
         .signup-container {
             background-color: white;
             padding: 30px;
+            border: 5px solid #c253b7;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             width: 400px;
@@ -38,6 +39,7 @@
         }
 
         form {
+            
             display: flex;
             flex-direction: column;
         }
@@ -92,26 +94,30 @@
 </head>
 <body>
 
-    <div class="signup-container">
-        <h2>Sign Up</h2>
-        <form id="signupForm">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username" required>
-            
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
-            <button type="submit">Sign Up</button>
-        </form>
-
-        <div class="login-text">
-            Already have an account? <a href="login.html">Login</a> <!-- This line is updated -->
+    <div  style="display: flex; flex-direction: column; align-items: center; margin: 20px;">
+        <h1 style="color: white; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans'; margin-bottom: 20px;">Welcome to <span style="color: #c253b7; font-weight: bolder; font-size: xx-large; margin-bottom: 20px;">Giphy</span></h1>
+        <div class="signup-container">
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+    
+                <button type="submit" style="background: #c253b7;">Sign Up</button>
+            </form>
+    
+            <div class="login-text">
+                Already have an account? <a href="login.html">Login</a> 
+            </div>
         </div>
+    
     </div>
-
+    
     <script>
         document.getElementById("signupForm").addEventListener("submit", function(event){
             event.preventDefault();
