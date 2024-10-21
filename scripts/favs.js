@@ -67,6 +67,7 @@ const setFavs = function () {
 					<div class="info flex-col " >
 							<p><strong>${gif.authorName || 'autor'}</strong></p>
 					</div>
+           <button class="remove-fav-btn">Remove from Favorites</button>
 			</figcaption>
 		`;
     let text, description;
@@ -76,6 +77,12 @@ const setFavs = function () {
       text = 'Check out this amazing Gif!';
       description = 'Check out this amazing Gif!';
 
+      figure.querySelector('.remove-fav-btn').addEventListener('click', (e) => {
+        removeFav(gif.imageUrl);
+        figure.remove();  // Remove the GIF from the DOM
+    });
+
+    fragment.appendChild(figure);
       modal.addEventListener('click', (e) => {
         if (e.target.id === 'fav') {
           removeFav(url);
