@@ -8,7 +8,7 @@
         /* CSS for styling the login page */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f0f4f8;
+            background-color: black;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,6 +19,7 @@
         .login-container {
             background-color: #fff;
             padding: 40px;
+            border: 5px solid #c253b7;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 300px;
@@ -82,20 +83,23 @@
     </style>
 </head>
 <body>
-
-    <div class="login-container">
-        <h2>Login</h2>
-        <form id="loginForm">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Login</button>
-        </form>
-        <div class="signup-link">
-            Don't have an account? <a href="signup.html">Sign up</a>
+    <div style="display: flex; flex-direction: column; align-items: center; margin: 20px;">
+        <h1 style="color: white; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans';"><span style="color: #c253b7; font-weight: bolder; font-size: xx-large; margin-top: 10px;">Giphy</span></h1>
+        <div class="login-container">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit" style="margin-left: 10px; background: #c253b7">Login</button>
+            </form>
+            <div class="signup-link">
+                Don't have an account? <a href="signup.html">Sign up</a>
+            </div>
         </div>
     </div>
+   
 
     <script>
         // JavaScript for handling form submission
