@@ -151,7 +151,14 @@ input[type='search']::placeholder {
   transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
 }
 
-
+#search-btn:hover,
+#toggle:hover,
+#fav-btn:hover,
+#home-btn:hover {
+  background-color: var(--accent-color); 
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  color: #fff; 
+}
 
 
 #search-btn:focus,
