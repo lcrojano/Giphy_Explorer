@@ -52,49 +52,52 @@ const setFavs = function () {
   let url;
 
   gifs.forEach((gif) => {
-    let figure = document.createElement('figure', { class: 'figure' }); //Este no esta en el dom todavia
+    let figure = document.createElement('figure', { class: 'figure' });
     figure.innerHTML = `
-			<picture class="picture ">
-				<source srcset="${gif.imageUrl}" type="image/png" media="(min-width:1920px)">
-				<source srcset="${gif.imageUrl}" type="image/png" media="(min-width:1200px)">
-				<source srcset="${gif.imageUrl}" type="image/png" media="(min-width:700px)">
-				<image src="${gif.imageUrl}" alt="test" class="abc">
-			</picture>
-			<figcaption>
-					<div class="autor flex-row aling-items-center">
-							<img src="${gif.authorImage} "
-					</div>
-					<div class="info flex-col " >
-							<p><strong>${gif.authorName || 'autor'}</strong></p>
-					</div>
-           <button class="remove-fav-btn">Remove from Favorites</button>
-			</figcaption>
-		`;
-    let text, description;
-    figure.addEventListener('click', (e) => {
-      modal.classList.add('display-modal');
-      url = e.target.src;
-      text = 'Check out this amazing Gif!';
-      description = 'Check out this amazing Gif!';
+      <picture class="picture ">
+        <source srcset="${gif.imageUrl}" type="image/png" media="(min-width:1920px)">
+        <source srcset="${gif.imageUrl}" type="image/png" media="(min-width:1200px)">
+        <source srcset="${gif.imageUrl}" type="image/png" media="(min-width:700px)">
+        <image src="${gif.imageUrl}" alt="test" class="abc">
+      </picture>
+      <figcaption>
+        <div class="autor flex-row aling-items-center">
+          <img src="${gif.authorImage}" />
+        </div>
+        <div class="info flex-col">
+          <p><strong>${gif.authorName || 'autor'}</strong></p>
+        </div>
+        <button class="remove-fav-btn">Remove from Favorites</button>
+      </figcaption>
+    `;
 
-      figure.querySelector('.remove-fav-btn').addEventListener('click', (e) => {
-        removeFav(gif.imageUrl);
-        figure.remove();  // Remove the GIF from the DOM
+    // Event listener for removing the favorite (outside modal logic)
+    figure.querySelector('.remove-fav-btn').addEventListener('click', (e) => {
+      e.stopPropagation();  // Prevents the modal from being triggered on remove
+      removeFav(gif.imageUrl);  // Remove GIF from localStorage using its imageUrl
+      figure.remove();  // Remove the GIF from the DOM
     });
 
     fragment.appendChild(figure);
+
+    // Modal logic
+    figure.addEventListener('click', (e) => {
+      modal.classList.add('display-modal');
+      url = e.target.src;
+
+      // Close button listener
+      modal.querySelector('#close').addEventListener('click', () => {
+        modal.classList.remove('display-modal');
+      });
+
       modal.addEventListener('click', (e) => {
         if (e.target.id === 'fav') {
           removeFav(url);
           e.target.textContent = 'Removed';
         }
-
         if (e.target.id === 'copy') {
           navigator.clipboard.writeText(url);
-          // Show "Copied" message
           e.target.textContent = 'Copied';
-
-          // Reset the button text to "Copy" after 2 seconds (2000 milliseconds)
           setTimeout(() => {
             e.target.textContent = 'Copy';
           }, 2000);
@@ -103,37 +106,25 @@ const setFavs = function () {
           shareOnFacebook(url);
         }
         if (e.target.id === 'share-twitter') {
-          shareOnTwitter(url, text);
+          shareOnTwitter(url, 'Check out this amazing Gif!');
         }
         if (e.target.id === 'share-pinterest') {
-          shareOnPinterest(url, url, description);
+          shareOnPinterest(url, url, 'Check out this amazing Gif!');
         }
-        // if(e.target.id === 'share-insta'){
-        //   shareOnInstagram(url,description);
-        // }
       });
     });
-    modal.addEventListener('click', (e) => {
-      if (e.target.id === 'close' || e.target.id === 'modal-overlay') {
-        modal.classList.remove('display-modal');
-      }
-      if (e.target.id === 'copy') {
-        console.log(url);
-      }
-    });
-
-    fragment.appendChild(figure);
   });
+
   main.appendChild(fragment);
 };
 
+// Updated removeFav function
 const removeFav = function (url) {
-  const localStorage = window.localStorage;
-  const favsString = localStorage.getItem('gifs');
-  const favs = favsString ? JSON.parse(favsString) : {};
-  delete favs[url];
-  const newFavs = JSON.stringify(favs);
-  localStorage.setItem('gifs', newFavs);
+  let favs = getFavs();  // Get current favorites
+  favs.delete(url);  // Remove the GIF from the Map using the imageUrl as the key
+  const newFavs = JSON.stringify(Object.fromEntries(favs));  // Convert Map back to an object
+  localStorage.setItem('gifs', newFavs);  // Update localStorage with the new state
 };
 
 setFavs();
+
