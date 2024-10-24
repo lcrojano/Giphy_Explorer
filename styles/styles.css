@@ -295,6 +295,8 @@ figure img {
   border-radius: 4px;
   height: 50px;
   cursor: pointer;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bolder;
 }
 
 
@@ -302,6 +304,10 @@ figure img {
   background-color: #ba40ae; 
   color: #fff; 
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.upload-btn {
+  margin-left: 15px;
 }
 
 .tag-btn {
