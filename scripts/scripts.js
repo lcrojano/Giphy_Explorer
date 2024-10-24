@@ -14,6 +14,39 @@ class GiphyObj {
   };
 }
 
+const style = document.createElement('style');
+style.innerHTML = `
+  .fav {
+    font-size: 24px; /* Make the heart larger */
+    color: red; /* Red color */
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    cursor: pointer; /* Make it look clickable */
+    transition: transform 0.2s ease; /* Smooth hover effect */
+  }
+
+  .fav:hover {
+    transform: scale(1.2); /* Make it a bit larger when hovered */
+  }
+
+  .autor img {
+    width: 30px;  /* Adjust the size of the logo */
+    height: 30px; /* Keep the logo square, you can adjust as needed */
+    border-radius: 50%; /* Optional: make the logo circular */
+  }
+
+  .info strong {
+    font-size: 14px;  /* Reduce the name font size */
+    color: #333;      /* Adjust the color if needed */
+  }
+
+  .info p {
+    font-size: 12px;  /* Reduce the font size of the additional info text */
+    color: #666;      /* Optional: add a lighter color for the secondary text */
+  }
+`;
+document.head.appendChild(style);
+
 /** Get param q, from url, return empty string or query */
 const getUrlParams = () => {
   const params = new URLSearchParams(window.location.search);
@@ -174,33 +207,27 @@ const updateMainView = (gifs) => {
     });
 
     figure.innerHTML = `
+  <picture class="picture">
+    <source srcset="${gif.images?.downsized?.url}" type="image/png" media="(min-width:1920px)">
+    <source srcset="${gif.images?.downsized?.url}" type="image/png" media="(min-width:1200px)">
+    <source srcset="${gif.images?.downsized?.url}" type="image/png" media="(min-width:700px)">
+    <img src="${gif.images?.downsized?.url}" alt="Test" class="abc">
+  </picture>
+  <figcaption>
+    <div class="autor flex-row align-items-center">
+      <img src="${gif.user?.avatar_url || 'https://placehold.jp/150x150.png'}" alt="">
+      <div class="info flex-col">
+        <p><strong>${gif.user?.username || 'autor'}</strong></p>
+        <p>${gif.source_tld}</p>
+      </div>
+      <div class="fav-container">
+        <button id="fav" onclick="getGifInfo(event)" class="fav">❤</button>
+         <!-- Add your text here -->
+      </div>
+    </div>
+  </figcaption>
+`;
 
-            <picture class="picture ">
-                <source srcset="${
-                  gif.images?.downsized?.url
-                }" type="image/png" media="(min-width:1920px)">
-                <source srcset="${
-                  gif.images?.downsized?.url
-                }" type="image/png" media="(min-width:1200px)">
-                <source srcset="${
-                  gif.images?.downsized?.url
-                }" type="image/png" media="(min-width:700px)">
-                <img src="${gif.images?.downsized?.url}" alt="Test" class="abc">
- 		            <button id="fav" onclick="getGifInfo(event)" class="fav">Add favorite</button>
-            </picture>
-            <figcaption>
-                <div class="autor flex-row aling-items-center">
-                    <img src="${
-                      gif.user?.avatar_url || 'https://placehold.jp/150x150.png'
-                    }" alt="">
-                    <div class="info flex-col ">
-                        <p><strong>${gif.user?.username || 'autor'}</strong></p>
-                        <p>${gif.source_tld}</p>
-                    </div>
-                </div>
-            </figcaption>
-        
-           `;
     //4. agregar el nodo html a el padre.
     main.appendChild(figure);
   });
