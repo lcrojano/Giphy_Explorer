@@ -12,6 +12,9 @@
   --primary-text-color: #121212;
 }
 
+html{
+  scroll-behavior: smooth;
+}
 .dark-mode {
   background-color: var(--primary-text-color);
   color: var(--principal-text-color);
