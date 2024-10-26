@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +40,7 @@
         }
 
         form {
-            
+
             display: flex;
             flex-direction: column;
         }
@@ -90,49 +91,92 @@
         .login-text a:hover {
             text-decoration: underline;
         }
+
+        .google-login {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+        }
     </style>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+
 </head>
+
 <body>
 
-    <div  style="display: flex; flex-direction: column; align-items: center; margin: 20px;">
-        <h1 style="color: white; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans'; margin-bottom: 20px;">Welcome to <span style="color: #c253b7; font-weight: bolder; font-size: xx-large; margin-bottom: 20px;">Giphy</span></h1>
+    <div style="display: flex; flex-direction: column; align-items: center; margin: 20px;">
+        <h1
+            style="color: white; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans'; margin-bottom: 20px;">
+            Welcome to <span
+                style="color: #c253b7; font-weight: bolder; font-size: xx-large; margin-bottom: 20px;">Giphy</span></h1>
         <div class="signup-container">
             <h2>Sign Up</h2>
             <form id="signupForm">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
-                
+
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
-    
+
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
-    
+
                 <button type="submit" style="background: #c253b7;">Sign Up</button>
             </form>
-    
+
+            <p>OR</p>
+
+            <!-- Google Sign-In Button -->
+            <div class="google-login">
+                <div id="g_id_onload" data-client_id="GOOGLE_CLIENT_ID" data-context="signup" data-ux_mode="popup"
+                    data-callback="handleCredentialResponse" data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin" data-type="standard"></div>
+            </div>
+
+
             <div class="login-text">
-                Already have an account? <a href="login.html">Login</a> 
+                Already have an account? <a href="login.html">Login</a>
             </div>
         </div>
-    
+
     </div>
-    
+
     <script>
-        document.getElementById("signupForm").addEventListener("submit", function(event){
+        // Handle manual form sign-up submission
+        document.getElementById("signupForm").addEventListener("submit", function (event) {
             event.preventDefault();
             let username = document.getElementById("username").value;
             let email = document.getElementById("email").value;
             let password = document.getElementById("password").value;
 
-            if(username && email && password) {
+            if (username && email && password) {
                 alert("Signed up successfully!");
                 // Here, you could add code to send data to a server, etc.
             } else {
                 alert("Please fill in all fields.");
             }
         });
+
+        // Google Sign-In Callback Function
+        function handleCredentialResponse(response) {
+            const userObject = jwt_decode(response.credential); // Decode JWT token
+
+            // Log the encoded JWT ID token for debugging
+            console.log("Encoded JWT ID token: " + response.credential);
+            console.log("User Object:", userObject); // Log the decoded user object for verification
+
+            // Store user data and authentication state in local storage
+            localStorage.setItem('isAuthenticated', 'true'); // Set authenticated state
+            localStorage.setItem('user', JSON.stringify(userObject)); // Save user data
+
+            // Redirect to home page or show a welcome message
+            window.location.href = 'home.html';
+        }
     </script>
 
 </body>
+
 </html>

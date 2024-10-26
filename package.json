@@ -9,7 +9,8 @@
     "lint": "eslint --max-warnings=0",
     "commit": "cz",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "start": "http-server . -p 3000"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.11.0",
+    "http-server": "^14.1.1",
     "husky": "^9.1.6",
     "jest": "^29.7.0",
     "prettier": "^3.3.3"
