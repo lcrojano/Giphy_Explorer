@@ -66,16 +66,19 @@ h1 {
 
 .logo {
   position: relative;
+  z-index: 101;
 }
 
 .logo-link {
     text-decoration: none;
     color: var(--primary-text-color);
+    z-index: 101;
 }
 
 .fixedlogo {
   position: fixed;
   top: -60px;
+  z-index: 101;
 }
 
 .show {
@@ -110,6 +113,7 @@ h1 {
   transition-delay: 2s;
   transform: translateX(40%);
   transition: transform 0.4s ease;
+  z-index: 101;
 }
 
 input[type='search'] {
@@ -277,6 +281,34 @@ figure img {
   position: fixed;
 }
 
+.navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 98%;
+  max-width: 100%;
+  display: block;
+  justify-content: space-between;
+  padding: 3em 1%;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  transition: transform 0.5s ease;
+}
+.hidden-navbar {
+  transform: translateY(-100%); /* Moves navbar out of view */
+}
+
+.visible-navbar {
+  transform: translateY(0); /* Brings navbar into view */
+}
+
+/* Make the logo responsive */
+.navbar .logo {
+  max-height: 80%; /* Keeps the logo within the navbar without stretching */
+  z-index: 101;
+}
 .primary-btn {
   background: linear-gradient(
     45deg,
@@ -286,6 +318,8 @@ figure img {
   border-radius: 4px;
   overflow: hidden;
   cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 50px;
 }
 
 .secondary-btn {
@@ -297,6 +331,7 @@ figure img {
   cursor: pointer;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bolder;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 

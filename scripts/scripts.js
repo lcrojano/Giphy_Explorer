@@ -73,6 +73,19 @@ const loadGifs = async (url, callback) => {
   return gifs.data;
 };
 
+/** navbar  **/
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) { // Adjust the value for when the navbar should appear
+    navbar.classList.add('visible-navbar');
+    navbar.classList.remove('hidden-navbar');
+  } else {
+    navbar.classList.remove('visible-navbar');
+    navbar.classList.add('hidden-navbar');
+  }
+});
+
 /**Search */
 
 const searchEvent = (e, giphyObj) => {
