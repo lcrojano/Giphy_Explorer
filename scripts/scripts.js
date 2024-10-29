@@ -362,3 +362,6 @@ const setFavs = function (link, gif) {
 };
 
 init();
+module.exports ={
+  this:GiphyObj
+} ;

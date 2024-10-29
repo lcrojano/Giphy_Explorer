@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <script src="https://kit.fontawesome.com/72fc4d72f1.js" crossorigin="anonymous"></script>
+            <link rel="stylesheet" href="styles/normalize.css" />
+            <link rel="stylesheet" href="styles/gif.css" />
+            <script src="scripts/favs.js" defer></script>
+            <title>Giphy Search | @lcrojano</title>
+        </head>
+        <body>
+            <div class="navbar">
+                <div class="container">
+                    <div class="logo">
+                        <img src="assets/images/logo.png" alt="Giphy Explorer" />
+                        <h1>GIPHY</h1>
+                    </div>
+                    <div class="pages">
+                        <a href="">Reactions</a>
+                        <a href="">Entertainment</a>
+                        <a href="">Sports</a>
+                        <a href="">Stickers</a>
+                        <a href="">Artists</a>
+                        <img src="three-dots-vertical-svgrepo-com.svg" alt="Menu" style="height: 20px; width: 20px;"/>
+                        <button class="upload">Upload</button>
+                        <button class="create">Create</button>
+                        <button class="log-in" style="display: flex; align-items: center; padding: 10px 20px; background-color: #f0f0f0; border: none; cursor: pointer;">
+                            <img src="https://img.icons8.com/?size=100&id=99268&format=png&color=000000" alt="login-icon"
+                                 style="width: 24px; height: 24px; margin-right: 10px;" />
+                            Log In
+                        </button>
+                        
+                    </div>
+                    <div style="position: relative; width: 300px;">
+                        <input type="text" placeholder="@username + tag to search with a verified channel"
+                               style="width: 100%; padding: 10px; padding-right: 40px; box-sizing: border-box;" />
+                        <img src="https://img.icons8.com/?size=100&id=14079&format=png&color=000000" alt="search"
+                             style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); width: 24px; height: 24px; cursor: pointer;" />
+                    </div>
+                </div>
+            </div>
+            <div id="profile">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img src="assets/images/user.png" alt="Demic" />
+                    </div>
+                    <div class="profile-info">
+                        <div class="profile-username">
+                            <h2>Demic</h2>
+                            <i class="fas fa-badge-check verified-badge"></i>
+                        </div>
+                        <p>@jerseydemic</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-tumblr"></i></a>
+                        </div>
+                        <div class="source-link">
+                            <a href="twitter.com/kingdemic">twitter.com/kingdemic</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="gif-container">
+                    <h3>Happy Little Girl GIF By Demic</h3>
+                    <div class="gif-actions">
+                        <button class="action-button favorite">
+                            <i class="fas fa-heart"></i>
+                            Favorite
+                        </button>
+                        <button class="action-button share">
+                            <i class="fas fa-share"></i>
+                            Share
+                        </button>
+                        <button class="action-button embed">
+                            <i class="fas fa-code"></i>
+                            Embed
+                        </button>
+                    </div>
+                    <div class="gif-player">
+                        <img src="assets/images/no.gif" alt="No Way GIF By Demic" />
+                    </div>
+                </div>
+        
+                <div class="virtual-bg">
+                    <h3>Make Your Own Virtual Background</h3>
+                    <!-- Virtual background player would go here -->
+                </div>
+            </div>
+        
+            <script src="scripts/gif.js"></script>
+        </body>
+    </html>
