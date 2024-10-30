@@ -8,7 +8,6 @@
       src="https://kit.fontawesome.com/72fc4d72f1.js"
       crossorigin="anonymous"
     ></script>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/normalize.css" />
     <link rel="stylesheet" href="styles/styles.css" />
     <script src="scripts/scripts.js" defer></script>
@@ -67,7 +66,7 @@
           <a href="https://lcrojano.github.io/Giphy_Explorer/" class="logo-link">
             <h1 class="grow-2" id="logo">Giphy Search</h1>
           </a>
-          <caption  style="font-family: 'Patrick Hand', cursive; font-weight: bolder;">
+          <caption>
             By Luis Rojano
           </caption>
         </div>
@@ -78,8 +77,8 @@
           <!-- Add this button to trigger the modal for uploading GIFs -->
           <button
             id="upload-button"
-            class="secondary-btn upload-btn"
-            style="margin-left: 15px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bolder;"
+            class="secondary-btn"
+            style="margin-left: 15px"
           >
             Upload GIF
           </button>
@@ -94,10 +93,14 @@
         </div>
       </header>
       <section
-        class="flex-col justify-content-center stickysearchbar"
+        class="flex-col justify-content-center visible stickysearchbar"
         id="searchbar"
       >
+      
         <div class="flex-row justify-content-btw align-items-center">
+          <a href="https://lcrojano.github.io/Giphy_Explorer/" class="logo-link">
+            <h1 class="grow-2 hidden" id="logo-sticky" >Giphy Search</h1>
+          </a>
           <input
             class="grow-2 sticky"
             type="search"
@@ -140,7 +143,7 @@
             <li><i class="fa-brands fa-square-instagram"></i></li>
             <li><i class="fa-brands fa-square-pinterest"></i></li>
           </ul>
-          <button id="copy" class="secondary-btn copy-btn" style="margin-bottom: 10px;">Copy Link</button>
+          <button id="copy" class="secondary-btn copy-btn">Copy Link</button>
         </div>
       </section>
 
@@ -152,7 +155,7 @@
           <span id="">2000</span>
         </div>
         <nav>
-          <menu id="history" class="flex-row tag-menu" ></menu>
+          <menu id="history" class="flex-row tag-menu"></menu>
         </nav>
       </section>
 
@@ -167,6 +170,7 @@
     <script type="text/javascript">
       mybutton = document.getElementById('myBtn');
       logo = document.getElementById('logo');
+      logo_sticky = document.getElementById('logo-sticky');
       searchbar = document.getElementById('searchbar');
 
       // Indicate scroll down or scroll up
@@ -182,21 +186,29 @@
 
         if (window.pageYOffset > 50 && scrollBefore < window.scrollY) {
           mybutton.style.display = 'block';
-          logo.classList.add('fixedlogo', 'show');
+          // logo.classList.add('fixedlogo', 'show','blur-background');
           logo.classList.remove('logo');
+          logo_sticky.classList.remove('hidden');
+          
 
           searchbar.classList.remove('stickysearchbar');
-          searchbar.classList.add('fixedsearchbar');
+          searchbar.classList.add('fixedsearchbar','visible');
+          searchbar.classList.add('blur-background','w-100')
           scrollBefore = scrolled;
         } else if (window.pageYOffset < 50) {
           scrollBefore = window.scrollY;
           mybutton.style.display = 'none';
 
           searchbar.classList.add('stickysearchbar');
-          searchbar.classList.remove('fixedsearchbar');
+          searchbar.classList.remove('fixedsearchbar','blur-background','w-100');
 
-          logo.classList.remove('fixedlogo', 'show');
+          logo.classList.remove('fixedlogo', 'show','blur-background');
           logo.classList.add('logo');
+
+          logo_sticky.classList.add('hidden');
+
+          // document.body.classList.remove('blur-background');
+
         }
       }
 
