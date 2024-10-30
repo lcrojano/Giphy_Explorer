@@ -108,11 +108,11 @@ h1 {
 .fixedsearchbar {
   position: fixed;
   top: 20px;
-  right: 31%;
-  left: 300px;
+  /* right: 31%; */
+  /* left: 300px; */
   transition-delay: 2s;
-  transform: translateX(40%);
-  transition: transform 0.4s ease;
+  transform: translateX(5%);
+  transition: transform 1s ease;
 }
 
 input[type='search'] {
@@ -469,4 +469,19 @@ figure img {
   font-weight: bolder;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   
+}
+
+.blur-background {
+  box-shadow: rgba(31, 38, 135, 0.37) 0px 8px 32px 0px;
+  backdrop-filter: blur(5.5px);
+  background: rgba(223, 24, 24, 0.6);
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.18);
+  border-image: initial;
+}
+
+.hidden{
+  display: none;
 }
